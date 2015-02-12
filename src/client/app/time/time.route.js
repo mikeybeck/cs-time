@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.admin')
+        .module('app.time')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -14,16 +14,16 @@
     function getStates() {
         return [
             {
-                state: 'admin',
+                state: 'time',
                 config: {
-                    url: '/admin',
-                    templateUrl: 'app/admin/admin.html',
-                    controller: 'AdminController',
+                    url: '/time',
+                    templateUrl: 'app/time/time.html',
+                    controller: 'TimeController',
                     controllerAs: 'vm',
-                    title: 'Admin',
+                    title: 'Time',
                     settings: {
-                        nav: 3,
-                        content: '<i class="fa fa-lock"></i> Admin'
+                        nav: 2,
+                        content: '<i class="fa fa-clock-o"></i> Time'
                     }
                 }
             }
