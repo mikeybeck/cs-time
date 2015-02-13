@@ -4,14 +4,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="today-datas">
-                        
+
                         <li class="blightblue">
                             <div class="pull-left"><i class="fa fa-clock-o"></i></div>
                             <div class="datas-text pull-right">
                                 <span class="bold">0:40:35</span> Apple, Filemaker Development
                                 textarea
                             </div>
-                            
+
                             <div class="clearfix"></div>
                         </li>
 
@@ -35,6 +35,103 @@
                 </div>
             </div>
             <div class="row">
+
+                <div class="col-md-6">
+                    <div class="widget wgreen">
+                        <div ht-widget-header title="{{vm.news.title}}"
+                            subtitle="{{vm.news.subtitle}}" allow-collapse="true"></div>
+                        <div class="widget-content text-info">
+                            <small>
+                                <select ng-model="vm.showType" >
+                                    <option value="" selected="selected">All</option>
+                                    <option value="open" selected="selected">Open</option>
+                                    <option value="rejected" selected="selected">Rejected</option>
+                                    <option value="pending" selected="selected">Pending</option>
+                                </select>
+
+                                <!-- View Time Modal -->
+                                <div class="modal fade" id="viewTimeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-eye"></i> View Time Entry</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        View time entries here
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- Edit Time Modal -->
+                                <div class="modal fade" id="editTimeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                        <i class="fa fa-edit"></i> Edit Time Entry</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        Edit time entries here
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </small>
+
+
+
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="clickable" ng-click="vm.sort('status')"><i class="fa fa-question-circle icon"></i></th>
+                                        <th class="clickable" ng-click="vm.sort('client')">Client</th>
+                                        <th class="clickable" ng-click="vm.sort('bucket')">Bucket</th>
+                                        <th class="clickable" ng-click="vm.sort('date')">Date</th>
+                                        <th  >Hours</th>
+                                        <th  >Actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="t in vm.timeEntries | filter : {status:vm.showType} | orderBy : vm.sortBy">
+                                        <td><i tooltip="status" ng-class="{'fa fa-check green': t.status=='approved','fa fa-exclamation-triangle red': t.status=='rejected', 'fa fa-clock-o orange': t.status=='pending', 'fa fa-circle-o blue': t.status=='open'}" class="icon"></i>
+                                        </td>
+                                        <td>{{t.client}}</td>
+                                        <td>{{t.bucket}}</td>
+                                        <td>{{t.date.format('MM/DD/YYYY')}}</td>
+                                        <td>{{t.hours}}</td>
+                                        <td>
+
+                                            <i ng-if="t.status === 'approved' || t.status === 'pending'" class="fa fa-eye clickable icon" ng-click="vm.viewTimeEntry(t.id)" tooltip="view time entry" data-toggle="modal" data-target="#viewTimeModal"></i>
+
+                                            <i ng-if="t.status == 'open' || t.status == 'rejected'" class="fa fa-edit clickable clickable icon" ng-click="vm.editTimeEntry(t.id)" data-toggle="modal" data-target="#editTimeModal"></i>
+
+
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-6">
                     <div class="widget wviolet">
                         <div ht-widget-header title="Projects"
@@ -45,7 +142,7 @@
                                     <tr>
                                         <th>Client</th>
                                         <th>Bucket</th>
-                                        
+
                                         <th>Progress</th>
                                     </tr>
                                 </thead>
@@ -53,11 +150,11 @@
                                     <tr ng-repeat="p in vm.projects | orderBy : 'bucket' | orderBy : 'client' ">
                                         <td>{{p.client}}</td>
                                         <td>{{p.bucket}}</td>
-                                        
+
                                         <td width="50%">
                                             <div class="progress">
                                               <div class="progress-bar" role="progressbar" aria-valuenow="{{p.used}}" aria-valuemin="0" aria-valuemax="{{p.hours}}" style="width:{{p.complete}}%;">
-                                                
+
                                                 {{p.complete}}%
                                               </div>
                                             </div>
@@ -71,41 +168,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="widget wgreen">
-                        <div ht-widget-header title="{{vm.news.title}}"
-                             allow-collapse="true"></div>
-                        <div class="widget-content text-center text-info">
-                            <small>{{vm.news.description}}</small>
-                            <table class="table table-condensed table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Client</th>
-                                        <th>Bucket</th>
-                                        <th>Date</th>
-                                        <th>Hours</th>
-                                        <th>Actions</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="t in vm.timeEntries">
-                                        <td><i ng-class="{'fa fa-check green': t.status=='approved','fa fa-exclamation-triangle red': t.status=='rejected', 'fa fa-ellipsis-h orange': t.status=='pending'}"></i>  {{t.client}}</td>
-                                        <td>{{t.bucket}}</td>
-                                        <td>{{t.date.format('MM/DD/YYYY')}}</td>
-                                        <td>{{t.hours}}</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>

@@ -5,9 +5,9 @@
         .module('app.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+    DashboardController.$inject = ['$q', 'dataservice', 'logger','$filter', '$interval'];
     /* @ngInject */
-    function DashboardController($q, dataservice, logger) {
+    function DashboardController($q, dataservice, logger, $filter, $interval) {
         var vm = this;
         vm.news = {
             title: 'Time Entries',
@@ -19,8 +19,23 @@
         vm.projects = [];
         vm.timeEntries = [];
         vm.title = 'Dashboard';
+        vm.showType = '';
+        vm.sortBy = 'status';
+        vm.todayString = $filter('date')(Date.now(), 'yyyy-MM-dd');
 
         activate();
+
+        vm.sort = function(sortBy){
+            vm.sortBy = sortBy;
+        };
+
+        vm.editTimeEntry = function(entryId){
+            logger.warning('edit: '+entryId);
+        };
+
+        vm.viewTimeEntry = function(entryId){
+            logger.warning('view: '+ entryId);
+        };
 
         function activate() {
             var promises = [getMessageCount(), getPeople(), getProjects(), getTimeEntries()];
@@ -53,7 +68,7 @@
         function getTimeEntries() {
             return dataservice.getTimeEntries().then(function (data) {
                 vm.timeEntries = data;
-                console.log('time',vm.timeEntries)
+                console.log('time',vm.timeEntries);
                 return vm.projects;
             });
         }
