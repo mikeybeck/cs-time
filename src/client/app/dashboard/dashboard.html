@@ -3,7 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="today-datas">
+                    <div id="timeline"></div>
+                    <!-- <ul class="today-datas">
 
                         <li class="blightblue">
                             <div class="pull-left"><i class="fa fa-clock-o"></i></div>
@@ -31,7 +32,7 @@
                             <div class="clearfix"></div>
                         </li>
 
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <div class="row">
@@ -95,8 +96,10 @@
                                         <i class="fa fa-calendar icon"> {{vm.currentTimeEntry.date | date:"MM/dd/yyyy"}}</i><br/>
                                         <i class="fa fa-users icon"> {{vm.currentTimeEntry.client}}</i><br/>
                                         <i class="fa fa-bitbucket icon">{{vm.currentTimeEntry.bucket}}</i><br/>
-                                        <i class="fa fa-clock-o icon"><input type="number" ng-model="vm.currentTimeEntry.hours"/></i>
-
+                                        <i class="fa fa-clock-o icon"><input type="number" ng-model="vm.currentTimeEntry.hours"/></i><br/>
+                                        
+                                         <i class="fa fa-pencil icon"></i><br/>
+                                        <textarea placeholder="notes" cols="60" rows="5"></textarea>
 
                                       </div>
                                       <div class="modal-footer">
@@ -221,6 +224,18 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
+
+                    <div class="widget worange">
+                        <div ht-widget-header title="Utilization"
+                             allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                             <div id="timeline"></div>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
