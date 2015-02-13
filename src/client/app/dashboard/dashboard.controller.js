@@ -17,12 +17,14 @@
         vm.messageCount = 0;
         vm.people = [];
         vm.projects = [];
+        vm.clients = [];
         vm.timeEntries = [];
         vm.title = 'Dashboard';
         vm.showType = '';
         vm.sortBy = 'status';
         vm.todayString = $filter('date')(Date.now(), 'yyyy-MM-dd');
         vm.currentTimeEntry = {};
+        vm.newClientId = 0;
 
         activate();
 
@@ -40,8 +42,13 @@
             logger.warning(vm.currentTimeEntry.client);
         };
 
+        vm.newTimeEntry = function(entryId){
+            vm.currentTimeEntry = {};
+            logger.warning(vm.currentTimeEntry.client);
+        };
+
         function activate() {
-            var promises = [getMessageCount(), getPeople(), getProjects(), getTimeEntries()];
+            var promises = [getMessageCount(), getPeople(), getProjects(), getTimeEntries(), getClients()];
             return $q.all(promises).then(function() {
                 logger.info('Activated Dashboard View');
             });
@@ -58,6 +65,13 @@
             return dataservice.getPeople().then(function (data) {
                 vm.people = data;
                 return vm.people;
+            });
+        }
+
+        function getClients() {
+            return dataservice.getClients().then(function (data) {
+                vm.clients = data;
+                return vm.clients;
             });
         }
 

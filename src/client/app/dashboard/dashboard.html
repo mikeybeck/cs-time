@@ -43,9 +43,7 @@
                         <div class="widget-content text-info">
                             <small>
 
-                                <button type="button" class="btn btn-success btn-xs">
-                                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>new
-                                </button>
+                                <button type="button" class="btn btn-success btn-xs pull-right" ng-click="vm.newTimeEntry()" data-toggle="modal" data-target="#newTimeModal"><i class="fa fa-plus"  ></i>new</button>
 
                                 <select ng-model="vm.showType" >
                                     <option value="" selected="selected">All</option>
@@ -109,6 +107,42 @@
                                     </div>
                                   </div>
                                 </div>
+
+                                <!-- New Time Modal -->
+                                <div class="modal fade" id="newTimeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                        <i class="fa fa-edit"></i> New Time Entry</h4>
+                                      </div>
+                                      <div class="modal-body">
+
+                                        <i class="fa fa-calendar icon"> <input type="date"></i><br/>
+                                        <i class="fa fa-users icon"> {{vm.currentTimeEntry.client}}</i>
+                                        <select ng-model="vm.newClientId" ng-options="client.id as client.name for client in vm.clients"></select>
+                                        {{blah| json}}
+
+
+                                        <br/>
+                                        <i class="fa fa-bitbucket icon">{{vm.currentTimeEntry.bucket}}</i><br/>
+                                        <i class="fa fa-clock-o icon"><input type="number" ng-model="vm.currentTimeEntry.hours" placeholder="number of hours"/></i><br/>
+
+                                        <i class="fa fa-pencil icon"></i><br/>
+                                        <textarea placeholder="notes" cols="60" rows="5"></textarea>
+
+
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-warning">Submit Entry</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
                             </small>
 
 
@@ -135,11 +169,9 @@
                                         <td>{{t.hours}}</td>
                                         <td>
 
-                                            <i ng-if="t.status === 'approved' || t.status === 'pending'" class="fa fa-eye clickable icon" ng-click="vm.viewTimeEntry(t.id)" tooltip="view time entry" data-toggle="modal" data-target="#viewTimeModal"></i>
+                                            <i ng-if="t.status === 'approved' || t.status === 'pending'" class="fa fa-eye clickable icon action" ng-click="vm.viewTimeEntry(t.id)" tooltip="view time entry" data-toggle="modal" data-target="#viewTimeModal"></i>
 
-                                            <i ng-if="t.status == 'open' || t.status == 'rejected'" class="fa fa-edit clickable clickable icon" ng-click="vm.editTimeEntry(t.id)" data-toggle="modal" data-target="#editTimeModal"></i>
-
-
+                                            <i ng-if="t.status == 'open' || t.status == 'rejected'" class="fa fa-edit clickable clickable icon action" ng-click="vm.editTimeEntry(t.id)" data-toggle="modal" data-target="#editTimeModal"></i>
 
                                         </td>
                                     </tr>
