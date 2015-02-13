@@ -13,7 +13,8 @@
             getMessageCount: getMessageCount,
             getProjects: getProjects,
             getClients: getClients,
-            getTimers: getTimers
+            getTimers: getTimers,
+            getTimeEntries: getTimeEntries
         };
 
         return service;
@@ -96,6 +97,38 @@
             ];
             console.log(timers);
             return $q.when(timers);
+        }
+
+        function getTimeEntries() {
+            var timeEntries = [
+                
+                {   
+                    id: 0, 
+                    date: moment(),
+                    client : 'Salesforce',
+                    bucket: 'Health Development',
+                    hours: 5,
+                    status: 'approved'
+                },
+                {
+                    id: 1, 
+                    date: moment(),
+                    client : 'CodeScience',
+                    bucket : 'timetracker development',
+                    hours: 6,
+                    status: 'pending'
+                },
+                {
+                    id: 1, 
+                    date: moment(),
+                    client : 'CodeScience',
+                    bucket : 'timetracker development',
+                    hours: 6,
+                    status: 'rejected'
+                }
+            ];
+            console.log(timeEntries);
+            return $q.when(timeEntries);
         }
     }
 })();

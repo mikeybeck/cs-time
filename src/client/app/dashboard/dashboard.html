@@ -9,7 +9,9 @@
                             <div class="pull-left"><i class="fa fa-clock-o"></i></div>
                             <div class="datas-text pull-right">
                                 <span class="bold">0:40:35</span> Apple, Filemaker Development
+                                textarea
                             </div>
+                            
                             <div class="clearfix"></div>
                         </li>
 
@@ -75,7 +77,30 @@
                              allow-collapse="true"></div>
                         <div class="widget-content text-center text-info">
                             <small>{{vm.news.description}}</small>
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Bucket</th>
+                                        <th>Date</th>
+                                        <th>Hours</th>
+                                        <th>Actions</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="t in vm.timeEntries">
+                                        <td><i ng-class="{'fa fa-check green': t.status=='approved','fa fa-exclamation-triangle red': t.status=='rejected', 'fa fa-ellipsis-h orange': t.status=='pending'}"></i>  {{t.client}}</td>
+                                        <td>{{t.bucket}}</td>
+                                        <td>{{t.date.format('MM/DD/YYYY')}}</td>
+                                        <td>{{t.hours}}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                        
+                        
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
