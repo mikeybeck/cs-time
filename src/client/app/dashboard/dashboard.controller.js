@@ -22,6 +22,7 @@
         vm.showType = '';
         vm.sortBy = 'status';
         vm.todayString = $filter('date')(Date.now(), 'yyyy-MM-dd');
+        vm.currentTimeEntry = {};
 
         activate();
 
@@ -30,11 +31,13 @@
         };
 
         vm.editTimeEntry = function(entryId){
+            vm.currentTimeEntry = $filter('filter')(vm.timeEntries, {id: entryId})[0];
             logger.warning('edit: '+entryId);
         };
 
         vm.viewTimeEntry = function(entryId){
-            logger.warning('view: '+ entryId);
+            vm.currentTimeEntry = $filter('filter')(vm.timeEntries, {id: entryId})[0];
+            logger.warning(vm.currentTimeEntry.client);
         };
 
         function activate() {

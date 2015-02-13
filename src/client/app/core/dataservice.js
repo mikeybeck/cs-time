@@ -104,7 +104,7 @@
 
                 {
                     id: 0,
-                    date: moment().subtract(4, 'weeks'),
+                    date: moment().subtract(4, 'weeks').toDate(),
                     client : 'Salesforce',
                     bucket: 'Health Development',
                     hours: 5,
@@ -112,7 +112,7 @@
                 },
                 {
                     id: 1,
-                    date: moment().subtract(3, 'weeks'),
+                    date: moment().subtract(3, 'weeks').toDate(),
                     client : 'Salesforce',
                     bucket: 'Health Development',
                     hours: 5,
@@ -120,7 +120,7 @@
                 },
                 {
                     id: 2,
-                    date: moment().subtract(2, 'weeks'),
+                    date: moment().subtract(2, 'weeks').toDate(),
                     client : 'Salesforce',
                     bucket: 'Health Development',
                     hours: 5,
@@ -128,7 +128,7 @@
                 },
                 {
                     id: 3,
-                    date: moment().subtract(1, 'weeks'),
+                    date: moment().subtract(1, 'weeks').toDate(),
                     client : 'Salesforce',
                     bucket: 'Health Development',
                     hours: 5,
@@ -136,7 +136,7 @@
                 },
                 {
                     id: 4,
-                    date: moment(),
+                    date: moment().toDate(),
                     client : 'Salesforce',
                     bucket: 'Health Development',
                     hours: 5,
@@ -144,7 +144,7 @@
                 },
                 {
                     id: 5,
-                    date: moment().subtract(2, 'weeks'),
+                    date: moment().subtract(2, 'weeks').toDate(),
                     client : 'CodeScience',
                     bucket : 'timetracker development',
                     hours: 6,
@@ -152,7 +152,7 @@
                 },
                 {
                     id: 6,
-                    date: moment().subtract(1, 'weeks'),
+                    date: moment().subtract(1, 'weeks').toDate(),
                     client : 'CodeScience',
                     bucket : 'timetracker development',
                     hours: 6,
@@ -160,7 +160,7 @@
                 },
                 {
                     id: 7,
-                    date: moment(),
+                    date: moment().toDate(),
                     client : 'CodeScience',
                     bucket : 'timetracker development',
                     hours: 6,
@@ -168,7 +168,7 @@
                 },
                 {
                     id: 8,
-                    date: moment(),
+                    date: moment().toDate(),
                     client : 'CodeScience',
                     bucket : 'timetracker development',
                     hours: 6,
@@ -176,7 +176,7 @@
                 },
                 {
                     id: 9,
-                    date: moment(),
+                    date: moment().toDate(),
                     client : 'CodeScience',
                     bucket : 'timetracker development',
                     hours: 6,

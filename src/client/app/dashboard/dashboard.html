@@ -42,12 +42,19 @@
                             subtitle="{{vm.news.subtitle}}" allow-collapse="true"></div>
                         <div class="widget-content text-info">
                             <small>
+
+                                <button type="button" class="btn btn-success btn-xs">
+                                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>new
+                                </button>
+
                                 <select ng-model="vm.showType" >
                                     <option value="" selected="selected">All</option>
                                     <option value="open" selected="selected">Open</option>
                                     <option value="rejected" selected="selected">Rejected</option>
                                     <option value="pending" selected="selected">Pending</option>
                                 </select>
+
+
 
                                 <!-- View Time Modal -->
                                 <div class="modal fade" id="viewTimeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -58,11 +65,19 @@
                                         <h4 class="modal-title" id="myModalLabel"><i class="fa fa-eye"></i> View Time Entry</h4>
                                       </div>
                                       <div class="modal-body">
-                                        View time entries here
+
+                                        <i class="fa fa-calendar icon"> {{vm.currentTimeEntry.date | date:"MM/dd/yyyy"}}</i><br/>
+                                        <i class="fa fa-users icon"> {{vm.currentTimeEntry.client}}</i><br/>
+                                        <i class="fa fa-bitbucket icon"> {{vm.currentTimeEntry.bucket}}</i><br/>
+                                        <i class="fa fa-clock-o icon"> {{vm.currentTimeEntry.hours}}</i>
+
+
+
                                       </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+
+
                                       </div>
                                     </div>
                                   </div>
@@ -78,11 +93,18 @@
                                         <i class="fa fa-edit"></i> Edit Time Entry</h4>
                                       </div>
                                       <div class="modal-body">
-                                        Edit time entries here
+
+                                        <i class="fa fa-calendar icon"> {{vm.currentTimeEntry.date | date:"MM/dd/yyyy"}}</i><br/>
+                                        <i class="fa fa-users icon"> {{vm.currentTimeEntry.client}}</i><br/>
+                                        <i class="fa fa-bitbucket icon">{{vm.currentTimeEntry.bucket}}</i><br/>
+                                        <i class="fa fa-clock-o icon"><input type="number" ng-model="vm.currentTimeEntry.hours"/></i>
+
+
                                       </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-warning">Submit Entry</button>
                                       </div>
                                     </div>
                                   </div>
