@@ -5,17 +5,20 @@
         .module('app.core')
         .factory('dataservice', dataservice);
 
-    dataservice.$inject = ['$q'];
+    dataservice.$inject = ['$q','logger'];
     /* @ngInject */
-    function dataservice($q) {
+    function dataservice($q, logger) {
         var service = {
             getPeople: getPeople,
-            getMessageCount: getMessageCount
+            getMessageCount: getMessageCount,
+            getProjects: getProjects,
+            getClients: getClients,
+            getTimers: getTimers
         };
 
         return service;
 
-        function getMessageCount() { return $q.when(72); }
+        function getMessageCount() { return $q.when(99); }
 
         function getPeople() {
             var people = [
@@ -28,6 +31,71 @@
                 {firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming'}
             ];
             return $q.when(people);
+        }
+
+        function getProjects() {
+
+            return getClients().then(function(clients){
+
+                var projects = [   
+                    {client: clients[2].name,  bucket:clients[2].buckets[0], hours: 250, used: 100, complete: 50},
+                    {client: clients[2].name,  bucket:'Health Development', hours: 150, used: 100, complete: 10},
+                    {client: clients[1].name,  bucket:'Filemaker Support', hours: 200, used: 100, complete: 90},
+                    {client: clients[3].name,  bucket:'Maintenance', hours: 350, used: 100, complete: 30},
+                    {client: clients[0].name,  bucket:'Maintenance', hours: 350, used: 100, complete: 10}
+                ];
+                return $q.when(projects);
+            });
+            
+            
+        }
+
+
+        function getClients() {
+            var clients = [
+                
+                {   
+                    id: 0, 
+                    name: 'CodeScience',
+                    buckets: ['timetracker development','internal tools']
+                },
+                {
+                    id: 1, 
+                    name: 'Apple',
+                    buckets: ['filemaker discovery','filemaker development', 'filemaker maintenance']
+                },
+                {
+                    id: 2, 
+                    name: 'Salesforce',
+                    buckets: ['Health discovery','Health Development', 'Health Maintenance']
+                },
+                {
+                    id: 3, 
+                    name: 'MailChimp',
+                    buckets: ['Discovery','Development', 'Maintenance']
+                }
+                
+            ];
+            console.log(clients);
+            return $q.when(clients);
+        }
+
+        function getTimers() {
+            var timers = [
+                
+                {   
+                    id: 0, 
+                    name: 'CodeScience',
+                    buckets: ['timetracker development','internal tools']
+                },
+                {
+                    id: 1, 
+                    name: 'Apple',
+                    buckets: ['filemaker discovery','filemaker development', 'filemaker maintenance']
+                }
+            ];
+            console.log(timers);
+            return $q.when(timers);
         }
     }
 })();

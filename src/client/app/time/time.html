@@ -2,10 +2,27 @@
     <section class="matter">
         <div class="container">
             <div class="row">
-                <div class="widget wviolet">
+                <div class="widget worange">
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <h3>TODO: Implement Your Features</h3>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Bucket</th>
+                                    <th>Hours</th>
+                                    <th>Used</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in vm.projects | orderBy : 'bucket' | orderBy : 'client'  " >
+                                    <td>{{p.client}}</td>
+                                    <td>{{p.bucket}}</td>
+                                    <td>{{p.hours}}</td>
+                                    <td>{{p.used}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="widget-foot">
                         <div class="clearfix"></div>

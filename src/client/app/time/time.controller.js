@@ -5,16 +5,30 @@
         .module('app.time')
         .controller('TimeController', TimeController);
 
-    TimeController.$inject = ['logger'];
+    TimeController.$inject = ['logger','$scope','$q', 'dataservice'];
     /* @ngInject */
-    function TimeController(logger) {
+    function TimeController(logger, $scope, $q, dataservice) {
         var vm = this;
-        vm.title = 'Admin';
+        vm.title = 'Time';
+        vm.projects = [];
 
         activate();
 
         function activate() {
-            logger.info('Activated Admin View');
+            var promises = [getProjects()];
+            return $q.all(promises).then(function() {
+                logger.info('Activated Dashboard View');
+            });
+        }
+
+        function getProjects() {
+
+            return dataservice.getProjects().then(function (data) {
+
+                vm.projects = data;
+                console.log('got data:', vm.projects);
+                return vm.projects;
+            });
         }
     }
 })();

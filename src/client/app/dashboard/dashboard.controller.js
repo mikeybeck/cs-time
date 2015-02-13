@@ -10,17 +10,19 @@
     function DashboardController($q, dataservice, logger) {
         var vm = this;
         vm.news = {
-            title: 'cs-timer',
+            title: 'Timers',
+            subtitle : 'cool stuff',
             description: 'All kinds of useful stuff goes here'
         };
         vm.messageCount = 0;
         vm.people = [];
+        vm.projects = [];
         vm.title = 'Dashboard';
 
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getPeople()];
+            var promises = [getMessageCount(), getPeople(), getProjects()];
             return $q.all(promises).then(function() {
                 logger.info('Activated Dashboard View');
             });
@@ -37,6 +39,13 @@
             return dataservice.getPeople().then(function (data) {
                 vm.people = data;
                 return vm.people;
+            });
+        }
+
+        function getProjects() {
+            return dataservice.getProjects().then(function (data) {
+                vm.projects = data;
+                return vm.projects;
             });
         }
     }
