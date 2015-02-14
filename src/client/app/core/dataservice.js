@@ -15,7 +15,8 @@
             getClients: getClients,
             getTimers: getTimers,
             getTimeEntries: getTimeEntries,
-            getTimelineEvents : getTimelineEvents
+            getTimelineEvents : getTimelineEvents,
+            getAllTimelineEvents: getAllTimelineEvents
         };
 
         return service;
@@ -189,31 +190,36 @@
         }
 
         function getTimelineEvents(){
-            var timelineEvents = new vis.DataSet([{
-                id: 1,
-                content: 'item 1',
-                start: '2014-04-20'
-            }, {
-                id: 2,
-                content: 'item 2',
-                start: '2014-04-14'
-            }, {
-                id: 3,
-                content: 'item 3',
-                start: '2014-04-18'
-            }, {
-                id: 4,
-                content: 'item 4',
-                start: '2014-04-16'
-            }, {
-                id: 5,
-                content: 'item 5',
-                start: '2014-04-25'
-            }, {
-                id: 6,
-                content: 'item 6',
-                start: '2014-04-27'
-            }]);
+            var timelineEvents = new vis.DataSet([
+            {id: 'A', content: 'Discovery', start: '2014-01-16', end: '2014-01-22', type: 'background', group: 1},
+            {id: 'B', content: 'Development', start: '2014-01-23', end: '2014-01-26', type: 'background', group: 2},
+            {id: 'C', content: 'All Hands Reunion', start: '2014-01-27', end: '2014-02-03', type: 'background'}, // no group
+            {id: 'D', content: 'Period D', start: '2014-01-14', end: '2014-01-20', type: 'background', group: 'non-existing'},
+            {id: 1, content: 'item 1<br>start', start: '2014-01-30', group: 1},
+            {id: 2, content: 'item 2', start: '2014-01-18', group: 1},
+            {id: 3, content: 'item 3', start: '2014-01-21', group: 2},
+            {id: 4, content: 'item 4', start: '2014-01-17', end: '2014-01-21', group: 2},
+            {id: 5, content: 'item 5', start: '2014-01-28', type:'point', group: 2},
+            {id: 6, content: 'item 6', start: '2014-01-25', group: 2}
+
+        ]);
+            return $q.when(timelineEvents);
+        }
+
+        function getAllTimelineEvents(){
+            var timelineEvents = new vis.DataSet([
+            {id: 'A', content: 'Discovery', start: '2014-01-16', end: '2014-01-22', type: 'background', group: 1},
+            {id: 'B', content: 'Development', start: '2014-01-23', end: '2014-01-26', type: 'background', group: 2},
+            {id: 'C', content: 'All Hands Reunion', start: '2014-01-27', end: '2014-02-03', type: 'background'}, // no group
+            {id: 'D', content: 'Period D', start: '2014-01-14', end: '2014-01-20', type: 'background', group: 'non-existing'},
+            {id: 1, content: 'item 1<br>start', start: '2014-01-30', group: 1},
+            {id: 2, content: 'item 2', start: '2014-01-18', group: 1},
+            {id: 3, content: 'item 3', start: '2014-01-21', group: 2},
+            {id: 4, content: 'item 4', start: '2014-01-17', end: '2014-01-21', group: 2},
+            {id: 5, content: 'item 5', start: '2014-01-28', type:'point', group: 2},
+            {id: 6, content: 'item 6', start: '2014-01-25', group: 2}
+
+        ]);
             return $q.when(timelineEvents);
         }
     }
