@@ -1,0 +1,32 @@
+{
+  "404": [],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "browser-sync": [],
+  ".tmp": [],
+  "toastr.css": [],
+  "angular.js": [],
+  "angular-sanitize.js": [],
+  "toastr.js": [],
+  "ngplus-overlay.js": [],
+  "moment.js": [],
+  "angular-animate.js": [],
+  "src": [],
+  "index.html": [],
+  "public": [],
+  "client": [],
+  "shell.html": [],
+  "404.html": []
+}

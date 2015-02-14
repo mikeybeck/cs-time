@@ -20,10 +20,10 @@
                     templateUrl: 'app/time/time.html',
                     controller: 'TimeController',
                     controllerAs: 'vm',
-                    title: 'Time',
+                    title: 'Timeline',
                     settings: {
                         nav: 2,
-                        content: '<i class="fa fa-clock-o"></i> Time'
+                        content: '<i class="fa fa-clock-o"></i> Timeline'
                     }
                 }
             }

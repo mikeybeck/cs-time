@@ -2,9 +2,9 @@
     <section class="matter">
         <div class="container">
             <div class="row">
-                
+
                 <div class="col-md-12">
-                    
+
                     <ul class="today-datas">
 
                         <li class="blightblue">
@@ -93,7 +93,7 @@
                                         <i class="fa fa-users icon"> {{vm.currentTimeEntry.client}}</i><br/>
                                         <i class="fa fa-bitbucket icon">{{vm.currentTimeEntry.bucket}}</i><br/>
                                         <i class="fa fa-clock-o icon"><input type="number" ng-model="vm.currentTimeEntry.hours"/></i><br/>
-                                        
+
                                          <i class="fa fa-pencil icon"></i><br/>
                                         <textarea placeholder="notes" cols="60" rows="5"></textarea>
 
@@ -121,8 +121,6 @@
                                         <i class="fa fa-calendar icon"> <input type="date"></i><br/>
                                         <i class="fa fa-users icon"> {{vm.currentTimeEntry.client}}</i>
                                         <select ng-model="vm.newClientId" ng-options="client.id as client.name for client in vm.clients"></select>
-                                        {{blah| json}}
-
 
                                         <br/>
                                         <i class="fa fa-bitbucket icon">{{vm.currentTimeEntry.bucket}}</i><br/>
@@ -193,6 +191,7 @@
                             <table class="table table-condensed table-striped">
                                 <thead>
                                     <tr>
+                                        <th><i class="fa fa-eye icon"></i></th>
                                         <th>Client</th>
                                         <th>Bucket</th>
 
@@ -201,6 +200,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="p in vm.projects | orderBy : 'bucket' | orderBy : 'client' ">
+                                        <td><i class="icon fa clickable" ng-class="{'fa-eye':p.show,'fa-eye-slash':!p.show}" ng-click="p.show = !p.show"></i></td>
                                         <td>{{p.client}}</td>
                                         <td>{{p.bucket}}</td>
 
