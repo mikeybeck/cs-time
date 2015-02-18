@@ -7,23 +7,11 @@
                     
                     <ul class="today-datas">
 
-                        <li class="blightblue">
-                            <div class="pull-left"><i class="fa fa-clock-o"></i></div>
-                            <div class="datas-text pull-right">
-                                <span class="bold">0:40:35</span> Apple, Filemaker Development
-                                textarea
-                            </div>
-
-                            <div class="clearfix"></div>
-                        </li>
-
-                        <li class="borange">
-                            <div class="pull-left"><i class="fa fa-clock-o"></i></div>
-                            <div class="datas-text pull-right">
-                                <span class="bold">1:20:55</span> Salesforce, Health Development
-                            </div>
-                            <div class="clearfix"></div>
-                        </li>
+                        <timer id="c" onclass="borange" offclass="blightblue" state="off" seconds="58"  ng-click="vm.timerClick('c')" bucket="Apple - Filemaker maintenance"></timer>
+                        
+                        <timer id="a" onclass="borange" offclass="blightblue" state="off" seconds="0" bucket="Salesforce - Health" ng-click="vm.timerClick('a')"></timer>
+                        
+                        <timer id="b" onclass="borange" offclass="blightblue" state="off" seconds="600"  ng-click="vm.timerClick('b')" bucket="Salesforce - Health"></timer>
 
                     </ul>
                 </div>
@@ -183,7 +171,20 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
+
+                    <div class="widget wblue">
+                        <div ht-widget-header title="Util"
+                            subtitle="What are you doing?" allow-collapse="true"></div>
+                        <div class="widget-content text-info">
+
+                        </div>
+                    </div>
+
                 </div>
+
+                
+                    
+                
 
                 <div class="col-md-6">
                     <div class="widget wviolet">

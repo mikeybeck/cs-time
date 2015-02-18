@@ -5,9 +5,9 @@
         .module('app.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$q', 'dataservice', 'logger', '$filter', '$interval'];
+    DashboardController.$inject = ['$q', 'dataservice', 'logger', '$filter', '$interval', '$scope'];
     /* @ngInject */
-    function DashboardController($q, dataservice, logger, $filter, $interval) {
+    function DashboardController($q, dataservice, logger, $filter, $interval, $scope) {
         var vm = this;
         vm.news = {
             title: 'Time Entries',
@@ -29,10 +29,17 @@
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getPeople(), getProjects(), getTimeEntries(), getClients(), getTimelineEvents(),getUtilization()];
+            var promises = [getMessageCount(), getPeople(), getProjects(), 
+                getTimeEntries(), getClients(), getTimelineEvents(),getUtilization()];
+
             return $q.all(promises).then(function() {
                 logger.info('Activated Dashboard View');
             });
+        }
+
+        vm.timerClick = function(timerId){
+            console.log(timerId);
+            $scope.$broadcast('timerOn',{id:timerId});
         }
 
         vm.sort = function(sortBy) {
@@ -110,13 +117,13 @@
                 var groups = [
                   {
                     id: 1,
-                    style: "color: white; background-color: orange;",
+                    style: 'color: white; background-color: orange;',
                     content: 'CodeScience <li> Timeline Prototyping'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 2,
-                    style: "color: white; background-color: lightblue;",
+                    style: 'color: white; background-color: lightblue;',
                     content: 'Salesforce <li> Health Development'
                     // Optional: a field 'className', 'style'
                   }
@@ -143,9 +150,9 @@
         function getUtilization() {
             var container = document.getElementById('utilization');
             var groups = new vis.DataSet();
-            groups.add({id: 0, content: "group0"})
-            groups.add({id: 1, content: "group1"})
-            groups.add({id: 2, content: "group2"})
+            groups.add({id: 0, content: 'group0'});
+            groups.add({id: 1, content: 'group1'});
+            groups.add({id: 2, content: 'group2'});
             var items = [
                 {x: '2014-06-11', y: 10, group:0},
                 {x: '2014-06-12', y: 25, group:0},

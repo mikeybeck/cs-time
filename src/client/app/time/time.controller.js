@@ -3,7 +3,8 @@
 
     angular
         .module('app.time')
-        .controller('TimeController', TimeController);
+        .controller('TimeController', TimeController)
+        
 
     TimeController.$inject = ['logger','$scope','$q', 'dataservice'];
     /* @ngInject */
@@ -43,55 +44,55 @@
                 var groups = [
                   {
                     id: 1,
-                    style: "color: white; background-color: orange;",
+                    style: 'color: white; background-color: orange;',
                     content: 'CodeScience <li> Timeline Prototyping'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 2,
-                    style: "color: white; background-color: lightblue;",
+                    style: 'color: white; background-color: lightblue;',
                     content: 'Salesforce <li> Health Discovery <li>Health Development<li>SFUniversity'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 3,
-                    style: "color: white; background-color: lightgreen;",
+                    style: 'color: white; background-color: lightgreen;',
                     content: 'Apple <li> Filemaker Maintenance'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 4,
-                    style: "color: white; background-color: pink;",
+                    style: 'color: white; background-color: pink;',
                     content: 'Greenway Medical <li> Support'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 5,
-                    style: "color: white; background-color: violet;",
+                    style: 'color: white; background-color: violet;',
                     content: 'GenTux <li> Expert Services'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 6,
-                    style: "color: white; background-color: tan;",
+                    style: 'color: white; background-color: tan;',
                     content: 'Salesforce <li> Health Development'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 7,
-                    style: "color: white; background-color: gray;",
+                    style: 'color: white; background-color: gray;',
                     content: 'Salesforce <li> Health Development'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 8,
-                    style: "color: white; background-color: steelblue;",
+                    style: 'color: white; background-color: steelblue;',
                     content: 'Salesforce <li> Health Development'
                     // Optional: a field 'className', 'style'
                   },
                   {
                     id: 9,
-                    style: "color: white; background-color: purple;",
+                    style: 'color: white; background-color: purple;',
                     content: 'Salesforce <li> Health Development'
                     // Optional: a field 'className', 'style'
                   }
@@ -106,12 +107,6 @@
                     options
                 );
 
-                // var utilizationTimeline = new vis.Timeline(
-                //     utilization,
-                //     vm.timelineEvents,
-                //     groups,
-                //     options
-                // );
             });
         }
     }
