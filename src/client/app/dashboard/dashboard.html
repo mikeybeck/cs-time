@@ -207,7 +207,7 @@
 
                                         <td width="50%">
                                             <div class="progress">
-                                              <div class="progress-bar" role="progressbar" aria-valuenow="{{p.used}}" aria-valuemin="0" aria-valuemax="{{p.hours}}" style="width:{{p.complete}}%;">
+                                              <div class="progress-bar" ng-class="{greenZone:p.complete<50,yellowZone:p.complete>=50,redZone:p.complete > 75}" role="progressbar" aria-valuenow="{{p.used}}" aria-valuemin="0" aria-valuemax="{{p.hours}}" style="width:{{p.complete}}%;">
 
                                                 {{p.complete}}%
                                               </div>

@@ -34,12 +34,12 @@ function link(scope, element, attrs) {
 	    return str
     }
 
-    element.children('li').children('div.datas-text').children('span.time').html(duration.humanize());
+    element.children('li').children('div.datas-text').children('span.time').html(duration.format());
 	element.children('li').children('div.datas-text').children('span.bucket').html(attrs.bucket);
 
 	var  onInterval = function(){
 		duration = moment.duration(attrs.seconds, 'seconds');
-	    element.children('li').children('div.datas-text').children('span.time').html(duration.humanize());
+	    element.children('li').children('div.datas-text').children('span.time').html(duration.format());
 	    attrs.seconds = parseInt(attrs.seconds) + 60;
 	    console.log(attrs.seconds)
 	    scope.$apply();
