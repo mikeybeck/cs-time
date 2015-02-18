@@ -41,11 +41,11 @@
             return getClients().then(function(clients){
 
                 var projects = [
-                    {client: 'Salesforce',  bucket:clients[2].buckets[0], hours: 250, used: 100, complete: 50},
-                    {client: 'Salesforce',  bucket:'Health Development', hours: 150, used: 100, complete: 10},
-                    {client: 'Apple',  bucket:'Filemaker Support', hours: 200, used: 100, complete: 90},
-                    {client: 'MailChimp',  bucket:'Maintenance', hours: 350, used: 100, complete: 30},
-                    {client: 'CodeScience',  bucket:'Maintenance', hours: 350, used: 100, complete: 10}
+                    {client: 'Salesforce',  bucket:clients[2].buckets[0], hours: 250, used: 100, complete: 50, show: false},
+                    {client: 'Salesforce',  bucket:'Health Development', hours: 150, used: 100, complete: 10, show: true},
+                    {client: 'Apple',  bucket:'Filemaker Support', hours: 200, used: 100, complete: 90, show: false},
+                    {client: 'MailChimp',  bucket:'Maintenance', hours: 350, used: 100, complete: 30, show: false},
+                    {client: 'CodeScience',  bucket:'Maintenance', hours: 350, used: 100, complete: 10, show: true}
                 ];
                 return $q.when(projects);
             });
@@ -216,9 +216,13 @@
             {id: 2, content: 'item 2', start: '2014-01-18', group: 1},
             {id: 3, content: 'item 3', start: '2014-01-21', group: 2},
             {id: 4, content: 'item 4', start: '2014-01-17', end: '2014-01-21', group: 2},
-            {id: 5, content: 'item 5', start: '2014-01-28', type:'point', group: 2},
-            {id: 6, content: 'item 6', start: '2014-01-25', group: 2}
-
+            {id: 5, content: 'item 5', start: '2014-01-28', type:'point', group: 3},
+            {id: 6, content: 'item 6', start: '2014-01-25', group: 4},
+            {id: 7, content: 'item 6', start: '2014-01-25', group: 5},
+            {id: 8, content: 'item 6', start: '2014-01-25', group: 6},
+            {id: 9, content: 'item 6', start: '2014-01-25', group: 7},
+            {id: 10, content: 'item 4', start: '2014-01-17', end: '2014-01-21', group: 8},
+            {id: 11, content: 'item 4', start: '2014-01-17', end: '2014-01-21', group: 9}
         ]);
             return $q.when(timelineEvents);
         }

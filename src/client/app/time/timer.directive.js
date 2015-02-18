@@ -24,7 +24,7 @@ function controller($scope) {
 function link(scope, element, attrs) {
 	var duration = moment.duration(attrs.seconds, 'seconds');
 	
-
+	scope.clockRunning = false;
 	moment.duration.fn.format = function(){
 	    str = ""
 	    if(this.days() > 1) str = str + Math.floor(this.days()) + "d "
@@ -40,7 +40,7 @@ function link(scope, element, attrs) {
 	var  onInterval = function(){
 		duration = moment.duration(attrs.seconds, 'seconds');
 	    element.children('li').children('div.datas-text').children('span.time').html(duration.humanize());
-	    attrs.seconds++;
+	    attrs.seconds = parseInt(attrs.seconds) + 60;
 	    console.log(attrs.seconds)
 	    scope.$apply();
 	}
@@ -56,20 +56,21 @@ function link(scope, element, attrs) {
 
     element.bind("click", function() {
 
-        console.log(attrs);
+        //console.log(attrs);
         if (attrs.state === 'on') {
             element.children('li').removeClass(attrs.onclass).addClass(attrs.offclass);
             attrs.state = 'off';
-            
+            scope.clockRunning = false;
             clearTimeout(timeout);
         } else {
             element.children('li').removeClass(attrs.offclass).addClass(attrs.onclass);
             attrs.state = 'on';
-            
+            scope.clockRunning = true;
             timeout = setInterval(onInterval, 1000);
         }
 
     });
+
 
     scope.$on('timerOn',function(event, args){
     	if(attrs.id !== args.id){
@@ -77,6 +78,7 @@ function link(scope, element, attrs) {
 	    	attrs.state = 'off';
 	        element.children('li').removeClass(attrs.onclass).addClass(attrs.offclass);
         	clearTimeout(timeout);
+        	scope.clockRunning = false;
         }
 
     });

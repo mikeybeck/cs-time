@@ -1,5 +1,9 @@
 <li >
-    <div class="pull-left"><i class="fa fa-clock-o"></i></div>
+    <div class="pull-left">
+    	<img ng-if="!clockRunning" height="80px" src="images/clock-stopped.png" alt="">
+    	<img ng-if="clockRunning" height="80px" src="images/clock.gif" alt="">
+    </div>
+
 
     <div class="datas-text pull-right">
         <span class="time"></span><span class="bucket">bucket</span>

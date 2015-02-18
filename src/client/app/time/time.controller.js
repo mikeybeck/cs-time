@@ -1,25 +1,25 @@
 (function () {
-    'use strict';
+    "use strict";
 
     angular
         .module('app.time')
         .controller('TimeController', TimeController)
         
 
-    TimeController.$inject = ['logger','$scope','$q', 'dataservice'];
+    TimeController.$inject = ["logger","$scope","$q", "dataservice"];
     /* @ngInject */
     function TimeController(logger, $scope, $q, dataservice) {
         var vm = this;
-        vm.title = 'Time';
+        vm.title = "Time";
         vm.projects = [];
-        var container = document.getElementById('timeline'); 
+        var container = document.getElementById("timeline");
 
         activate();
 
         function activate() {
             var promises = [getProjects(),getTimelineEvents()];
             return $q.all(promises).then(function() {
-                logger.info('Activated Dashboard View');
+                logger.info("Activated Dashboard View");
             });
         }
 
@@ -28,16 +28,16 @@
             return dataservice.getProjects().then(function (data) {
 
                 vm.projects = data;
-                console.log('got data:', vm.projects);
+                console.log("got data:", vm.projects);
                 return vm.projects;
             });
         }
 
         function getTimelineEvents() {
             return dataservice.getAllTimelineEvents().then(function(data) {
-                
+
                 vm.timelineEvents = data;
-                
+
                 // Configuration for the Timeline
                 var options = {};
 
