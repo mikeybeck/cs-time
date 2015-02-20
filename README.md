@@ -1,6 +1,6 @@
 # cs-time
+>[Demo](http://codescience.github.io/cs-time/) 
 
-**Generated from HotTowel Angular**
 
 ## features
 
@@ -10,4 +10,5 @@
 * projects calendar
 * chart projected vs actual hours
 
->[Demo](http://codescience.github.io/cs-time/) 
+
+**Generated from HotTowel Angular**
