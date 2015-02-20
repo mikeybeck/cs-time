@@ -11,4 +11,5 @@
 * chart projected vs actual hours
 
 
-**Generated from HotTowel Angular**
+**Generated from [HotTowel Angular](https://github.com/johnpapa/generator-hottowel)**
+
