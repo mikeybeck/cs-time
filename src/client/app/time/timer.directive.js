@@ -3,11 +3,11 @@ angular
     .directive('timer', timer);
 
 /* @ngInject */
-function timer() {
-
+function timer($templateCache) {
+    console.log($templateCache.get(""))
     return {
         restrict: 'E',
-        templateUrl: '/app/time/timer.html',
+        templateUrl: 'app/time/timer.html',
         scope : {},
         controller: controller,
 
