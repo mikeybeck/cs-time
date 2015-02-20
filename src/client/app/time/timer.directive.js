@@ -2,7 +2,7 @@ angular
     .module('app.time')
     .directive('timer', timer);
 
-
+/* @ngInject */
 function timer() {
 
     return {
