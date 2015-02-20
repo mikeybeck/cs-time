@@ -21,16 +21,34 @@ function controller($scope) {
     }
 }
 
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
 function link(scope, element, attrs) {
-	var duration = moment.duration(attrs.seconds, 'seconds');
+	var duration = moment.duration();
+	duration.add(attrs.seconds,'seconds');
 	
 	scope.clockRunning = false;
 	moment.duration.fn.format = function(){
+		var days = Math.floor(this.days()),
+			hours = Math.floor(this.hours()),
+			minutes = Math.floor(this.minutes()),
+			seconds = Math.floor(this.seconds());
+		if (seconds < 10){
+			seconds = "0" + seconds;
+		}
+		
 	    str = ""
-	    if(this.days() > 1) str = str + Math.floor(this.days()) + "d "
-	    if(this.hours() > 1) str = str + Math.floor(this.hours()) + "h "
-	    if(this.minutes() > 1) str = str + Math.floor(this.minutes()) + "m "
-	    if(this.seconds() > 1) str = str + Math.floor(this.seconds()) + "s "
+	    if(days > 0) str = str + days + "d "
+	    if(hours > 0) str = str + hours + ":"
+	    if(minutes > 0) str = str + minutes + ":"
+	    
+	    if(seconds >= 0 ) str = str + seconds
+	    
+	    
 	    return str
     }
 
@@ -38,9 +56,9 @@ function link(scope, element, attrs) {
 	element.children('li').children('div.datas-text').children('span.bucket').html(attrs.bucket);
 
 	var  onInterval = function(){
-		duration = moment.duration(attrs.seconds, 'seconds');
+		duration.add(1, 'seconds');
 	    element.children('li').children('div.datas-text').children('span.time').html(duration.format());
-	    attrs.seconds = parseInt(attrs.seconds) + 60;
+	    attrs.seconds = parseInt(attrs.seconds) + 1;
 	    console.log(attrs.seconds)
 	    scope.$apply();
 	}
