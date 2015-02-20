@@ -10,8 +10,6 @@
                         <timer id="c" onclass="borange" offclass="blightblue" state="off" seconds="40"  ng-click="vm.timerClick('c')" bucket="Apple - Filemaker maintenance"></timer>
                         
                         <timer id="a" onclass="borange" offclass="blightblue" state="off" seconds="0" bucket="Salesforce - Health" ng-click="vm.timerClick('a')"></timer>
-                        
-                        <timer id="b" onclass="borange" offclass="blightblue" state="off" seconds="0"  ng-click="vm.timerClick('b')" bucket="Salesforce - Health"></timer>
 
                     </ul>
                 </div>
@@ -174,7 +172,7 @@
                         <div ht-widget-header title="Util"
                             subtitle="What are you doing?" allow-collapse="true"></div>
                         <div class="widget-content text-info">
-
+                            <div ui-calendar="vm.uiConfig.calendar" ng-model="vm.eventSources"></div>
                         </div>
                     </div>
 

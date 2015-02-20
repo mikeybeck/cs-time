@@ -7,7 +7,8 @@
         'app.admin',
         'app.time',
         'app.dashboard',
-        'app.layout'
+        'app.layout',
+        'app.calendar'
     ]);
 
 })();

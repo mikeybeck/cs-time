@@ -12,13 +12,13 @@ function timer() {
         controller: controller,
 
         link: link
-    }
+    };
 }
 
 function controller($scope) {
     this.toggle = function() {
 
-    }
+    };
 }
 
 function pad(n, width, z) {
@@ -38,19 +38,19 @@ function link(scope, element, attrs) {
 			minutes = Math.floor(this.minutes()),
 			seconds = Math.floor(this.seconds());
 		if (seconds < 10){
-			seconds = "0" + seconds;
+			seconds = '0' + seconds;
 		}
 		
-	    str = ""
-	    if(days > 0) str = str + days + "d "
-	    if(hours > 0) str = str + hours + ":"
-	    if(minutes > 0) str = str + minutes + ":"
+	    var str = '';
+	    if(days > 0){ str = str + days + 'd ';}
+	    if(hours > 0) {str = str + hours + ':';}
+	    if(minutes > 0) {str = str + minutes + ':';}
 	    
-	    if(seconds >= 0 ) str = str + seconds
+	    if(seconds >= 0 ) {str = str + seconds;}
 	    
 	    
-	    return str
-    }
+	    return str;
+    };
 
     element.children('li').children('div.datas-text').children('span.time').html(duration.format());
 	element.children('li').children('div.datas-text').children('span.bucket').html(attrs.bucket);
@@ -59,7 +59,7 @@ function link(scope, element, attrs) {
 		duration.add(1, 'seconds');
 	    element.children('li').children('div.datas-text').children('span.time').html(duration.format());
 	    attrs.seconds = parseInt(attrs.seconds) + 1;
-	    console.log(attrs.seconds)
+	    console.log(attrs.seconds);
 	    scope.$apply();
 	}
 
@@ -72,7 +72,7 @@ function link(scope, element, attrs) {
         element.children('li').addClass(attrs.offclass);
     }
 
-    element.bind("click", function() {
+    element.bind('click', function() {
 
         //console.log(attrs);
         if (attrs.state === 'on') {
@@ -102,9 +102,7 @@ function link(scope, element, attrs) {
     });
 
     scope.$on('timerOff',function(){
-    	console.log('got timerOff');
-    	//attrs.state='off';
+        console.log('got timerOff');
     });
+
 }
-
-
